@@ -3,12 +3,18 @@
 #include <math.h>
 #include <time.h>
 
-int main(void)
+int main(int argc, char* argv[])
 {
-    char* f = "dico_ae.txt";
-    arbre* a = lireArbre(f);
-    afficherArbreIteratif(a);
-    detruireArbre(&a);
-    comparaisonArbreHachage(f, 11);
+    if(argc>1)
+    {
+        arbre* a = lireArbre(argv[1]);
+        afficherArbreIteratif(a);
+        detruireArbre(&a);
+        comparaisonArbreHachage(argv[1], 11);
+    }
+    else
+    {
+        printf("Paramètre attendu: fichier.txt");
+    }
     return 0;
 }

@@ -3,8 +3,15 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-int main(void)
+int main(int argc, char* argv[])
 {
-    char* f = "histoire_quebec.txt";
-    comparaisonTemps(f, 11);
+
+    if(argc>1)
+    {
+        comparaisonTemps(argv[1], 11);
+    }
+    else
+    {
+        printf("Paramètre attendu: fichier.txt");
+    }
 }

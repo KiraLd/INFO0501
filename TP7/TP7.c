@@ -1,16 +1,25 @@
 #include "outilsGraphe.h"
 
-int main(void)
+int main(int argc, char* argv[])
 {
+    if(argc>1)
+    {
+        graphe* g = creerGraphe(argv[1]);
+        sommet*** s = dijkstra_complet(g);
+        if(s != NULL)
+        {
+            printf("\nAlgorithme de dijkstra: execution pour tous les sommets\n");
+            afficherDijkstraComplet(g, s);
+        }
+        sommet** s2 = bellman_ford(g, 0);
+        printf("\nAlgorithme de Bellman-ford: execution depuis le sommet 0")
+        afficherChemins(g, s2, 0);
 
-    char* f = "graphe2.txt";
-    graphe* g = creerGraphe(f);
-    char* f2 = "export.dot";
-    exporterMatrice(f2,g);
-    afficherMatriceAdjacences(g);
-    sommet*** s = dijkstra_complet(g);
-    afficherDijkstraComplet(g, s);
-
+    }
+    else
+    {
+        printf("Paramètre attendu: fichier.txt");
+    }
 
 
 }

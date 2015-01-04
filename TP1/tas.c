@@ -5,25 +5,25 @@
 
 int parent(int i)
 {
-    return (i-1)/2;
+    return (i - 1) / 2;
 }
 
 int gauche(int i)
 {
-    return 2*i;
+    return 2 * i;
 }
 
 int droite(int i)
 {
-    return (2*i)+1;
+    return (2 * i) + 1;
 }
 
 
 void entasserMax(tas* t, int i)
 {
-    int g,d,max;
-    g = gauche(i)+1;
-    d = droite(i)+1;
+    int g, d, max;
+    g = gauche(i) + 1;
+    d = droite(i) + 1;
     if(g < t->taille && t->tab[g] > t->tab[i])
     {
         max = g;
@@ -36,50 +36,49 @@ void entasserMax(tas* t, int i)
     {
         max = d;
     }
-    if(max!=i)
+    if(max != i)
     {
-        echanger(t->tab,t->taille,i,max);
-        if(t->taches!=NULL)
+        echanger(t->tab,t->taille, i, max);
+        if(t->taches != NULL)
         {
-            echanger_char(t->taches,i,max,t->taille);
+            echanger_char(t->taches, i, max, t->taille);
         }
-        entasserMax(t,max);
+        entasserMax(t, max);
     }
 }
 
 void construireTasMax(tas* t)
 {
-    //t->taille = t->longueur;
     int i;
-    for(i=(t->taille/2)-1;i>=0;i--)
+    for(i = (t->taille / 2) - 1 ; i >= 0 ; i--)
     {
-        entasserMax(t,i);
+        entasserMax(t, i);
     }
 
 }
 
 tas* creerTas(int n)
 {
-    tas* t =(tas*)malloc(sizeof(tas));
-    t->tab=creerTab(n);
-    t->longueur=n;
-    t->taille=n;
-    t->taches=NULL;
+    tas* t = (tas*) malloc(sizeof(tas));
+    t->tab = creerTab(n);
+    t->longueur = n;
+    t->taille = n;
+    t->taches = NULL;
     return t;
 }
 
 void afficher_tas(tas* t)
 {
-    if(t->taches[0]==NULL)
+    if(t->taches[0] == NULL)
     {
-        afficher(t->tab,t->longueur);
+        afficher(t->tab, t->longueur);
     }else
     {
         int i;
-        for(i=0;i<t->taille;i++)
+        for(i = 0 ; i < t->taille ; i++)
         {
-            printf("Priorite: %d\n",t->tab[i]);
-            printf("Tache: %s\n",t->taches[i]);
+            printf("Priorite: %d\n", t->tab[i]);
+            printf("Tache: %s\n", t->taches[i]);
         }
     }
 
@@ -96,18 +95,18 @@ tas* test_tas(int n)
 
 fileP* creerFileP(int n)
 {
-    tas* t =(tas*)malloc(sizeof(tas));
-    t->tab=creerTab(2*n);
-    t->longueur=2*n;
-    t->taille=n;
-    t->taches=(char**)malloc(sizeof(char*)*2*n);
+    tas* t = (tas*) malloc(sizeof(tas));
+    t->tab = creerTab(2 * n);
+    t->longueur = 2 * n;
+    t->taille = n;
+    t->taches = (char**) malloc(sizeof(char*) * 2 * n);
     int i;
-    for(i=0;i<2*n;i++)
+    for(i = 0 ; i < 2 * n ; i++)
     {
-        t->taches[i]=(char*)malloc(50*sizeof(char));
+        t->taches[i] = (char*) malloc(50 * sizeof(char));
     }
-    fileP* f =(fileP*)malloc(sizeof(fileP));
-    f->t=t;
+    fileP* f = (fileP*) malloc(sizeof(fileP));
+    f->t = t;
     return f;
 
 }

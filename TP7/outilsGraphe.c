@@ -442,6 +442,11 @@ sommet** dijkstra(graphe* g, int so)
         {
             if(s[temp->n]->couleur == 0)
             {
+                if(g->m[u][temp->n] < 0)
+                {
+                    printf("Erreur: poids négatif");
+                    return NULL;
+                }
                 if(s[temp->n]->distance > s[u]->distance + g->m[u][temp->n])
                 {
                     s[temp->n]->distance = s[u]->distance + g->m[u][temp->n];
