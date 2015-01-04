@@ -1,0 +1,15 @@
+nSommets 9
+oriente 0
+value 0
+complet 0
+debutDefAretes
+0 1
+0 7
+1 7
+1 2
+2 5
+3 2
+3 4
+4 5
+8 7
+finDefAretes
